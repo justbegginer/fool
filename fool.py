@@ -1,5 +1,5 @@
 import sh
-import color
+import color, game
 
 
 class Card:
@@ -46,14 +46,31 @@ class Player:
         self.name = name
         self.deck = his_deck
 
+def generate_deck(deck_size):
+    from_value = 6# from value = 6 for default deck
+    if deck_size == 52:
+        from_value = 2
+    deck = []
+    for i in range(from_value , 15):
+        deck.append(Card(i , "heart"))
+        deck.append(Card(i , "diamond"))
+        deck.append(Card(i , "club"))
+        deck.append(Card(i, "spade"))
+    return deck
+
+def generate_players(count_of_players):
+    players = []
+    for _ in range(count_of_players):
+        players.append(Player)
+
 
 print("давай сыграем")
-deck = 0
+deck_size = 0
 while True:
     print("выберите колоду в 36 или 52 карты")
     try:
-        deck = int(input())
-        assert deck == 36 or deck
+        deck_size = int(input())
+        assert deck_size == 36 or deck_size
     except AssertionError:
         print()
 print("назовите число игроков")
@@ -61,9 +78,11 @@ persons = 0
 while True:
     try:
         persons = int(input())
-        assert (persons <= 6 and deck == 36) or \
-               (persons <= 8 and deck == 52)
+        assert (persons <= 6 and deck_size == 36) or \
+               (persons <= 8 and deck_size == 52)
     except ValueError:
         color.red("вы ввели не число,попробуйте снова")
     except AssertionError:
         color.red("слишком много игроков для колоды")
+
+

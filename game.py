@@ -10,7 +10,7 @@ def play(deck, players):
 
 def take_card(players, deck):
     for i in range(len(players)):
-        while len(players[i].deck) < 6:
+        while len(players[i].deck) < 6 and deck:
             random_number = random.randint(0, len(deck) - 1)
             players[i].append(random_number)
             deck.pop(random_number)
