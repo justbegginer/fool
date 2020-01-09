@@ -21,6 +21,7 @@ class Card:
         elif self.value == 14:
             self.name = "Туз"
         # записываем масть
+        # переменная отвечающая за масть именуеться на английском , а в имени - на русском
         if self.suit == "heart":
             self.name += "Черви"
         elif self.suit == "diamond":

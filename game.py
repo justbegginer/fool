@@ -35,4 +35,5 @@ def generate_deck(deck_size):
 def generate_players(count_of_players):
     players = []
     for _ in range(count_of_players):
-        players.append(Player)
+        players.append(Player(input("")))
+    return players
