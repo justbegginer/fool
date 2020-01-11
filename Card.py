@@ -40,3 +40,6 @@ class Card:
                 return True
         else:
             return False
+
+    def __eq__(self, other):
+        return self.name == other.name

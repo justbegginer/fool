@@ -4,11 +4,9 @@ from Player import Player
 
 
 def play(deck_size, count_of_players):
-    players = generate_players(count_of_players)
     deck = generate_deck(deck_size)
+    players = generate_players(count_of_players, deck)
     while len(players) > 0:
-        if deck:
-            take_card()
 
 
 def take_card(players, deck):
@@ -32,8 +30,15 @@ def generate_deck(deck_size):
     return deck
 
 
-def generate_players(count_of_players):
+def generate_players(count_of_players, deck):
+    deck_size = len(deck) - 1  # because randint includes
     players = []
-    for _ in range(count_of_players):
-        players.append(Player(input("")))
+    for i in range(count_of_players):
+        users_deck = []
+        for _ in range(6):
+            random_card = random.randint(0, deck_size)
+            users_deck.append(deck[random_card])
+            deck.pop(random_card)
+            deck_size -= 1
+        players.append(Player(input(f"Назовите имя {i + 1}"), users_deck))
     return players
