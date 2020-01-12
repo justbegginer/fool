@@ -17,3 +17,6 @@ class Player:
 
     def pop_card(self, index):
         return self.deck.pop(index)
+
+    def __len__(self):
+        return len(self.deck)

@@ -23,23 +23,27 @@ class Card:
         # записываем масть
         # переменная отвечающая за масть именуеться на английском , а в имени - на русском
         if self.suit == "heart":
-            self.name += "Черви"
+            self.name += " Черви"
         elif self.suit == "diamond":
-            self.suit += "Буби"
+            self.name += " Буби"
         elif self.suit == "club":
-            self.suit += "Крести"
+            self.name += " Крести"
         elif self.suit == "spade":
-            self.suit += "Пики"
+            self.name += " Пики"
 
-    @staticmethod
-    def can_you_beat(this_card, your_card, main_suit):
-        if your_card.suit == this_card and your_card.value > this_card.value:
-            return True
-        elif your_card.suit == main_suit:
-            if this_card != main_suit or this_card.value < your_card.value:
+    def can_you_beat(self, this_card, main_suit):
+        if self.suit == this_card.suit:
+            if self.value > this_card.value:
                 return True
+            else:
+                return False
+        elif self.suit == main_suit:
+            return True
         else:
             return False
 
     def __eq__(self, other):
         return self.name == other.name
+
+    def __repr__(self):
+        return self.name
