@@ -17,10 +17,10 @@ def who_first(players, main_suit):
     index = 0
     min = None
     for player in range(len(players)):
-        for card in player[player]:
-            if card.get_suit() == main_suit:
-                if card.get_value() < min or min == 0:
-                    min = card.get_value()
+        for card in players[player].get_deck:
+            if card.get_suit == main_suit:
+                if min == None or card.get_value < min:
+                    min = card.get_value
                     index = player
     return index
 

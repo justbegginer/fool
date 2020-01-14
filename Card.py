@@ -6,44 +6,52 @@ class Card:
     def __init__(self, value, suit):
         self._value = value
         self._suit = suit
+        self.__check_suit()
         self.__give_name()
 
+    @property
     def get_value(self):
         return self._value
 
+    @property
     def get_suit(self):
         return self._suit
 
+    def __check_suit(self):
+        if not (self.get_suit == "diamond" or self.get_suit == "club" or
+                self.get_suit == "spade" or self.get_suit == "heart"):
+            raise ValueError
+
     def __give_name(self):
         # записываем значение карты
-        if self._value < 11:
-            self.name = str(self._value)
-        elif self._value == 11:
+        if self.get_value < 11:
+            self.name = str(self.get_value)
+        elif self.get_value == 11:
             self.name = "Валет"
-        elif self._value == 12:
+        elif self.get_value == 12:
             self.name = "Дама"
-        elif self._value == 13:
+        elif self.get_value == 13:
             self.name = "Король"
-        elif self._value == 14:
+        elif self.get_value == 14:
             self.name = "Туз"
         # записываем масть
         # переменная отвечающая за масть именуеться на английском , а в имени - на русском
-        if self._suit == "heart":
+        if self.get_suit == "heart":
             self.name += " Черви"
-        elif self._suit == "diamond":
+        elif self.get_suit == "diamond":
             self.name += " Буби"
-        elif self._suit == "club":
+        elif self.get_suit == "club":
             self.name += " Крести"
-        elif self._suit == "spade":
+        elif self.get_suit == "spade":
             self.name += " Пики"
 
     def can_you_beat(self, this_card, main_suit):
-        if self._suit == this_card.suit:
-            if self._value > this_card.value:
+        if self.get_suit == this_card.get_suit:
+            if self.get_value > this_card.get_value:
                 return True
             else:
                 return False
-        elif self._suit == main_suit:
+        elif self.get_suit == main_suit:
             return True
         else:
             return False
