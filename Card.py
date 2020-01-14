@@ -1,43 +1,49 @@
 class Card:
-    value: int
-    suit: str
+    _value: int
+    _suit: str
     name: str
 
     def __init__(self, value, suit):
-        self.value = value
-        self.suit = suit
+        self._value = value
+        self._suit = suit
         self.__give_name()
+
+    def get_value(self):
+        return self._value
+
+    def get_suit(self):
+        return self._suit
 
     def __give_name(self):
         # записываем значение карты
-        if self.value < 11:
-            self.name = str(self.value)
-        elif self.value == 11:
+        if self._value < 11:
+            self.name = str(self._value)
+        elif self._value == 11:
             self.name = "Валет"
-        elif self.value == 12:
+        elif self._value == 12:
             self.name = "Дама"
-        elif self.value == 13:
+        elif self._value == 13:
             self.name = "Король"
-        elif self.value == 14:
+        elif self._value == 14:
             self.name = "Туз"
         # записываем масть
         # переменная отвечающая за масть именуеться на английском , а в имени - на русском
-        if self.suit == "heart":
+        if self._suit == "heart":
             self.name += " Черви"
-        elif self.suit == "diamond":
+        elif self._suit == "diamond":
             self.name += " Буби"
-        elif self.suit == "club":
+        elif self._suit == "club":
             self.name += " Крести"
-        elif self.suit == "spade":
+        elif self._suit == "spade":
             self.name += " Пики"
 
     def can_you_beat(self, this_card, main_suit):
-        if self.suit == this_card.suit:
-            if self.value > this_card.value:
+        if self._suit == this_card.suit:
+            if self._value > this_card.value:
                 return True
             else:
                 return False
-        elif self.suit == main_suit:
+        elif self._suit == main_suit:
             return True
         else:
             return False

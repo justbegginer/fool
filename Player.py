@@ -20,3 +20,6 @@ class Player:
 
     def __len__(self):
         return len(self.deck)
+
+    def __repr__(self):
+        return self.deck
