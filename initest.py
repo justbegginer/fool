@@ -1,6 +1,7 @@
 import unittest
 from Card import Card
 from Player import Player
+import game
 
 
 class MyTestCase(unittest.TestCase):
@@ -24,10 +25,16 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(second_card.can_you_beat(first_card, main_suit), True)
         second_card = Card(6, "club")
         main_suit = "club"
-        self.assertEqual(second_card.can_you_beat(first_card, main_suit), True, f"{second_card.suit}  {main_suit}")
+        self.assertEqual(second_card.can_you_beat(first_card, main_suit), True, f"{second_card.get_suit}  {main_suit}")
         first_card = Card(10, "club")
         self.assertEqual(second_card.can_you_beat(first_card, main_suit), False,
-                         f"{second_card.suit} + {second_card.value}    {first_card.suit} + {first_card.value}  {main_suit}")
+                         f"{second_card.get_suit} + {second_card.get_value}    {first_card.get_suit} + {first_card.get_value}  {main_suit}")
+
+    def test_who_first_func(self):
+        first_player = Player("first", [Card(2, "diamond"), Card(6, "spade")])
+        second_player = Player("second", [Card(4, "spade")])
+        main_suit = "spade"
+        self.assertEqual(game.who_first([first_player, second_player], main_suit), 1, "second player must move  first")
 
 
 if __name__ == '__main__':
